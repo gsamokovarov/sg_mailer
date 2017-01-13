@@ -1,18 +1,19 @@
-require 'sg/mail'
-require 'sg/mail_builder'
-require 'sg/response_error'
-require 'sg/job'
-require 'sg/message_delivery'
-require 'sg/transactional_mailer'
+require 'sg_mailer/configuration_error'
+require 'sg_mailer/response_error'
+require 'sg_mailer/mail_builder'
+require 'sg_mailer/client'
+require 'sg_mailer/job'
+require 'sg_mailer/message_delivery'
+require 'sg_mailer/transactional_mailer'
 
 module SGMailer
   extend self
 
-  attr_accessor :instance
+  attr_accessor :client
 
   def send(mail)
-    response = instance.client.mail._('send').post(request_body: mail.as_json)
-    raise ResponseError, response if response.status_code.to_i > 299
-    response
+    raise ConfigurationError if client.nil?
+
+    client.send(mail)
   end
 end
