@@ -20,7 +20,7 @@ module SGMailer
 
     def normalize_email(email)
       if email.is_a?(String)
-        { email: email, name: email.split('@').first.to_s }
+        { email: email }
       else
         email
       end
