@@ -9,9 +9,16 @@ module SGMailer
     end
 
     def send(mail)
-      Net::HTTP.start(*http_options) do |http|
-        http.request(request(mail))
+      response =
+        Net::HTTP.start(*http_options) do |http|
+          http.request(request(mail))
+        end
+
+      if response.code.to_i > 299
+        raise ResponseError.new(response)
       end
+
+      response
     end
 
     private
@@ -21,9 +28,9 @@ module SGMailer
     end
 
     def request(body)
-      Net::HTTP::Post.new(@api_uri, request_headers).tap do |req|
-        req.body = body
-      end
+      request = Net::HTTP::Post.new(@api_uri, request_headers)
+      request.body = body
+      request
     end
 
     def request_headers
