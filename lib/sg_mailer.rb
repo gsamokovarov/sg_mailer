@@ -6,6 +6,8 @@ require 'sg_mailer/message_delivery'
 require 'sg_mailer/base'
 
 module SGMailer extend self
+  attr_accessor :client
+
   def configure(**options)
     self.client = Client.new(**options)
   end
@@ -15,8 +17,4 @@ module SGMailer extend self
 
     client.send(mail)
   end
-
-  private
-
-  attr_accessor :client
 end
