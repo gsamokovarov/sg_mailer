@@ -3,7 +3,7 @@ require 'sg_mailer/response_error'
 require 'sg_mailer/mail_builder'
 require 'sg_mailer/client'
 require 'sg_mailer/message_delivery'
-require 'sg_mailer/transactional_mailer'
+require 'sg_mailer/base'
 
 module SGMailer
   extend self
