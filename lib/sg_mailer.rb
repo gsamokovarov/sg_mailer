@@ -5,9 +5,7 @@ require 'sg_mailer/client'
 require 'sg_mailer/message_delivery'
 require 'sg_mailer/base'
 
-module SGMailer
-  extend self
-
+module SGMailer extend self
   attr_accessor :client
 
   def send(mail)
