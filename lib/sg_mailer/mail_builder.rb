@@ -1,8 +1,8 @@
 module SGMailer
   class MailBuilder
-    def initialize(from:, to: :template_id, substitutions: {})
+    def initialize(from:, to:, template_id:, substitutions: {})
       @from = normalize_email(from)
-      @to = Array(to).map { |email| normalize_email(email) },
+      @to = Array(to).map { |email| normalize_email(email) }
       @substitutions = normalize_substitutions(substitutions)
       @template_id = template_id
     end
