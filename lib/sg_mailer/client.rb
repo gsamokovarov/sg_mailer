@@ -13,12 +13,10 @@ module SGMailer
     def send(mail)
       response =
         Net::HTTP.start(*http_options) do |http|
-          http.request(request(mail))
+          http.request(request(mail.to_json))
         end
 
-      if response.code.to_i > 299
-        raise ResponseError.new(response)
-      end
+      raise ResponseError.new(response) if response.code.to_i > 299
 
       response
     end
