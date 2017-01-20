@@ -3,7 +3,7 @@ module SGMailer
     attr_accessor :mail_requests
 
     def send(mail)
-      mail_requests << mail
+      mail_requests << mail.to_json
     end
   end
 end
