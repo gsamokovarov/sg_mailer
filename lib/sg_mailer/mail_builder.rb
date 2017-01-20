@@ -8,12 +8,10 @@ module SGMailer
     end
 
     def build
-      {
-        from: normalize_email(@from),
-        personalizations: [{ to: @to, substitutions: @substitutions }],
+      { from: normalize_email(@from),
+        personalizations: [to: @to, substitutions: @substitutions],
         content: content_for_template,
-        template_id: @template_id
-      }
+        template_id: @template_id }
     end
 
     private
@@ -31,7 +29,7 @@ module SGMailer
     end
 
     def content_for_template
-      [{ type: "text/html", value: "<html><body></body></html>" }]
+      [type: "text/html", value: "<html><body></body></html>"]
     end
   end
 end
