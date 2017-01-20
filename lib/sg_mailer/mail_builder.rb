@@ -9,7 +9,7 @@ module SGMailer
 
     def build
       {
-        from: normalize_email(@from)
+        from: normalize_email(@from),
         personalizations: [{ to: @to, substitutions: @substitutions }],
         content: content_for_template,
         template_id: @template_id
