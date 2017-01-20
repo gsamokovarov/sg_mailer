@@ -34,10 +34,8 @@ module SGMailer
     end
 
     def request_headers
-      {
-        'Authorization' => "Bearer #{@api_key}",
-        'Content-Type' => 'application/json'
-      }
+      { 'Authorization' => "Bearer #{@api_key}",
+        'Content-Type' => 'application/json' }
     end
   end
 end
