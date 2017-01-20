@@ -1,11 +1,11 @@
 require 'test_helper'
 
-class SgMailerTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::SgMailer::VERSION
-  end
+class SGMailerTest < Minitest::Test
+  def test_configuration_setups_a_client_with_api_key
+    api_key = 'xxx'
 
-  def test_it_does_something_useful
-    assert false
+    SGMailer.configure(api_key: api_key)
+
+    assert_equal api_key, SGMailer.client.api_key
   end
 end
