@@ -1,3 +1,4 @@
+require 'json'
 require 'net/http'
 
 module SGMailer
@@ -16,7 +17,7 @@ module SGMailer
           http.request(request(mail.to_json))
         end
 
-      raise ResponseError.new(response) if response.code.to_i > 299
+      raise ResponseError, response if response.code.to_i > 299
 
       response
     end
@@ -24,7 +25,7 @@ module SGMailer
     private
 
     def http_options
-      [@api_uri.host, @api_uri.port, https: @api_uri.scheme == 'https']
+      [@api_uri.host, @api_uri.port, use_ssl: @api_uri.scheme == 'https']
     end
 
     def request(body)
