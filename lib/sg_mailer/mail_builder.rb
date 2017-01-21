@@ -25,7 +25,9 @@ module SGMailer
     end
 
     def normalize_substitutions(substitutions)
-      Hash[substitutions.map { |key, value| [key.to_s, value.to_s] }]
+      Hash[substitutions.map do |key, value|
+        [key.to_s, value.to_s]
+      end]
     end
 
     def content_for_template
