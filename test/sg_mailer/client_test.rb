@@ -14,5 +14,16 @@ module SGMailer
 
       SGMailer.send(mail.build)
     end
+
+    def test_sending_a_mail_can_error_out
+      template_id = '00000000-0000-0000-0000-000000000000'
+      mail = MailBuilder.new(from: 'gsamokovarov+from@gmail.com',
+                             to: 'gsamokovarov+to@gmail.com',
+                             template_id: template_id)
+
+      assert_raises SGMailer::ResponseError do
+        SGMailer.send(mail.build)
+      end
+    end
   end
 end
