@@ -27,8 +27,8 @@ module SGMailer
 
       def method_missing(name, *args, &block)
         if public_instance_methods.include?(name)
-          mail = instance.public_send(name, *args, &block)
-          MessageDelivery.new(mail)
+          SGMailer.delivery_processor.new \
+            instance.public_send(name, *args, &block)
         else
           super
         end
@@ -57,7 +57,7 @@ module SGMailer
     end
 
     def normalize_options(options)
-      self.class.default.deep_merge(options)
+      self.class.default.merge(options)
     end
   end
 end
