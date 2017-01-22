@@ -15,8 +15,8 @@ module SGMailer
     end
 
     def test_action_mailer_kind_of_interface
-      mail = SendGridMailer.welcome_mail
-      mail.deliver_later
+      SendGridMailer.welcome_mail.deliver_now
+      SendGridMailer.welcome_mail.deliver_later
     end
   end
 end
