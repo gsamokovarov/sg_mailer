@@ -5,7 +5,8 @@ module SGMailer
     class SendGridMailer < SGMailer::Base
       template_id 'e0d26988-d1d7-41ad-b1eb-4c4b37125893'
       def welcome_mail
-        mail from: 'me@foo.com', to: 'ms@foo.com'
+        mail from: 'gsamokovarov+from@gmail.com',
+             to: 'gsamokovarov+ti@gmail.com'
       end
     end
 
