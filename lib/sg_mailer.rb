@@ -11,7 +11,7 @@ module SGMailer extend self
 
   def configure(delivery_processor: default_delivery_processor,
                 test_client: false, **client_options)
-    self.client = test_client ? TestClient.new : Client.new(**options)
+    self.client = test_client ? TestClient.new : Client.new(**client_options)
     self.delivery_processor = delivery_processor
   end
 
