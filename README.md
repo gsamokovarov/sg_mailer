@@ -141,9 +141,20 @@ end
 
 We don't conventionalize the substitutions, because their format varies from
 team to team. When you settle on one, you can easily turn your instance
-variables into proper substitutions, should you want to. And you know you want
-to!
+variables into proper substitutions, should you want to.
 
+Until now, we only defined mails, but how to send them?
+
+```ruby
+# To deliver the mail now.
+SubscriptionMailer.successful_subscription_mail.deliver_now
+
+# To deliver the mail later on, with ActionJob, if installed.
+SubscriptionMailer.successful_subscription_mail.deliver_later.
+```
+
+The interface should be pretty familiar to you, if you have used Action Mailer
+before.
 ## License
 
 The gem is available as open source under the terms of the [MIT
