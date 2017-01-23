@@ -57,7 +57,26 @@ module SGMailer
     end
 
     def normalize_options(options)
-      self.class.default.merge(options)
+      deep_merge(self.class.default, options)
+    end
+
+    # Based on the Active Support Hash#deep_merge! core extension. Inlined
+    # here, so we don't need to explicitly depend on Active Support.
+    def deep_merge(hash, other_hash)
+      merged = hash.dup
+
+      other_hash.each_pair do |current_key, other_value|
+	this_value = merged[current_key]
+
+	merged[current_key] =
+	  if this_value.is_a?(Hash) && other_value.is_a?(Hash)
+	    deep_merge(this_value, other_value)
+	  else
+	    other_value
+	  end
+      end
+
+      merged
     end
   end
 end
