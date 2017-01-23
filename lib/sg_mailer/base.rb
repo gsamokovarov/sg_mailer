@@ -48,12 +48,14 @@ module SGMailer
     def mail(**options)
       # Guess the template id here, so we don't have to account for extra
       # calls.
-      template_id = self.class.template_ids[caller_locations.first.base_label]
+      guessed_template_id =
+        self.class.template_ids[caller_locations.first.base_label]
 
-      normalized = normalize_options({ template_id: template_id }.merge(options))
+      normalized = normalize_options({
+        template_id: guessed_template_id
+      }.merge(options))
 
-      builder = MailBuilder.new(normalized)
-      builder.build
+      MailBuilder.build(normalized)
     end
 
     def normalize_options(options)

@@ -12,11 +12,11 @@ module SGMailer
       test_client = TestClient.new
 
       template_id = '00000000-0000-0000-0000-000000000000'
-      mail = MailBuilder.new(from: 'gsamokovarov+from@gmail.com',
-                             to: 'gsamokovarov+to@gmail.com',
-                             template_id: template_id)
+      mail = MailBuilder.build(from: 'gsamokovarov+from@gmail.com',
+                               to: 'gsamokovarov+to@gmail.com',
+                               template_id: template_id)
 
-      test_client.send(mail.build)
+      test_client.send(mail)
 
       assert_equal test_client.mail_requests.map { |m| JSON.parse(m) },
         [
