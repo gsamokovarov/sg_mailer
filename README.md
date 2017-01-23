@@ -155,6 +155,7 @@ SubscriptionMailer.successful_subscription_mail.deliver_later
 
 The interface should be pretty familiar to you, if you have used Action Mailer
 before.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT
