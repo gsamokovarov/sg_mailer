@@ -150,7 +150,7 @@ Until now, we only defined mails, but how to send them?
 SubscriptionMailer.successful_subscription_mail.deliver_now
 
 # To deliver the mail later on, with ActionJob, if installed.
-SubscriptionMailer.successful_subscription_mail.deliver_later.
+SubscriptionMailer.successful_subscription_mail.deliver_later
 ```
 
 The interface should be pretty familiar to you, if you have used Action Mailer
