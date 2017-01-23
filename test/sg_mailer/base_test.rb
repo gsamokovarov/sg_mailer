@@ -15,6 +15,24 @@ module SGMailer
         mail from: { name: 'Not Genadi' },
              to: 'gsamokovarov+to@gmail.com'
       end
+
+      template_id 'e0d26988-d1d7-41ad-b1eb-4c4b37125893'
+      def welcome_mail_with_normalized_substitutions
+        @foo = 42
+        @bar = 'string'
+
+        mail to: 'gsamokovarov+to@gmail.com'
+      end
+
+      private
+
+      def normalize_options(_options)
+        automatic_substitutions = Hash[instance_variables.map do |ivar|
+          ["#{ivar.to_s.gsub(/@|_/, '').upcase}", instance_variable_get(ivar)]
+        end]
+
+        deep_merge(super, substitutions: automatic_substitutions)
+      end
     end
 
     def setup
@@ -46,6 +64,14 @@ module SGMailer
       mail = SendGridMailer.new.welcome_mail_with_default_optins
 
       assert_equal template_id, mail[:template_id]
+    end
+
+    def test_normalized_options_processing
+      mail = SendGridMailer.new.welcome_mail_with_normalized_substitutions
+
+      assert_equal mail[:personalizations][0][:substitutions],
+        'FOO' => '42',
+        'BAR' => 'string'
     end
   end
 end

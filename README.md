@@ -117,7 +117,7 @@ class SendGridMailer < SGMailer::Base
   # Don't forget to call super and return a Hash in here.
   def normalize_options(options)
     automatic_substitutions = instance_values.transform_keys do |key|
-      "#{key.remove('_').upcase}"
+      "#{key.to_s.remove('_').upcase}"
     end
 
     super.deep_merge(substitutions: automatic_substitutions)
