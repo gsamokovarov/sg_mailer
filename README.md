@@ -36,7 +36,7 @@ end
 Having the base mailer around, you may start introducing specific ones.
 
 ```ruby
-class SubscriptionMailer < ApplicationMailer
+class SubscriptionMailer < SendGridMailer
   def successful_subscription_mail(parent, kid)
     template_id = 'd6c0eb74-b280-4d25-a835-479818a450e8'
 
@@ -56,7 +56,7 @@ them. Since this is so common, there is nice interface for annotating the
 emails with the template id.
 
 ```ruby
-class SubscriptionMailer < ApplicationMailer
+class SubscriptionMailer < SendGridMailer
   template_id 'd6c0eb74-b280-4d25-a835-479818a450e8'
   def successful_subscription_mail(parent, kid)
     substitutions = {
@@ -73,7 +73,7 @@ end
 You can also extract the common sender into a default value like so:
 
 ```ruby
-class SubscriptionMailer < ApplicationMailer
+class SubscriptionMailer < SendGridMailer
   default from: { name: 'Charlie Brown', email: 'charlie@bp.com' }
 
   template_id 'd6c0eb74-b280-4d25-a835-479818a450e8'
@@ -128,7 +128,7 @@ end
 With the code above the mails can look pretty tidy.
 
 ```ruby
-class SubscriptionMailer < ApplicationMailer
+class SubscriptionMailer < SendGridMailer
   template_id 'd6c0eb74-b280-4d25-a835-479818a450e8'
   def successful_subscription_mail(parent, kid)
     @kid_name = kid.name
