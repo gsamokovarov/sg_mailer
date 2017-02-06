@@ -3,11 +3,11 @@ require 'net/http'
 
 module SGMailer
   class Client
-    attr_reader :api_key
+    attr_reader :api_key, :api_url
 
-    def initialize(api_key:, api_url: nil)
+    def initialize(api_key:, api_url: 'https://api.sendgrid.com/v3/mail/send')
       @api_key = api_key
-      @api_url ||= 'https://api.sendgrid.com/v3/mail/send'
+      @api_url = api_url
       @api_uri = URI(@api_url)
     end
 

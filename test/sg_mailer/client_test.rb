@@ -25,5 +25,12 @@ module SGMailer
         SGMailer.send(mail)
       end
     end
+
+    def test_api_url_can_be_changed
+      client = Client.new(api_key: ENV['SG_API_KEY'],
+                          api_url: 'https://example.com')
+
+      assert_equal 'https://example.com', client.api_url
+    end
   end
 end
